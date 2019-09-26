@@ -44,6 +44,7 @@ before_script:
       phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
     fi
 script:
+  - phpunit
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
       phpunit
