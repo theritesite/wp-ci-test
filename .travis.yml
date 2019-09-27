@@ -38,6 +38,8 @@ before_script:
       bash bin/install-wp-develop.sh wordpress_test root '' localhost $WP_VERSION
       composer global require "phpunit/phpunit=4.8.*|5.7.*"
     fi
+  - npm install
+  - npm run build
 script:
-  - phpunit -c phpunit.xml.dist
+  - phpunit web/tests/phpunit/*
   - phpunit -c phpunit.xml
