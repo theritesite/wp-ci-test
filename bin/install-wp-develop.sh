@@ -72,3 +72,4 @@ install_db() {
 
 install_wp
 install_db
+cd web
