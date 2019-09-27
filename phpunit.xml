@@ -23,9 +23,6 @@
 			<group>external-http</group>
 		</exclude>
 	</groups>
-	<logging>
-		<log type="junit" target="web/tests/phpunit/build/logs/junit.xml" />
-	</logging>
 	<php>
 		<const name="WP_RUN_CORE_TESTS" value="1" />
 	</php>
