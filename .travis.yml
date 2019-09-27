@@ -41,7 +41,7 @@ before_script:
   - cd web
   - npm install
   - npm run build
-  - cd ..
+  - cd src
 script:
   - phpunit -c phpunit.xml.dist
   - phpunit -c phpunit.xml
