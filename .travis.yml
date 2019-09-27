@@ -47,7 +47,7 @@ script:
   - phpunit -c phpunit.xml
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
-      phpunit
+      phpunit -c phpunit.xml
     fi
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
