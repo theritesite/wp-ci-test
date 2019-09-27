@@ -40,10 +40,9 @@ before_script:
     fi
   - cd web
   - npm install
-  - npm run grunt
   - npm run build
 script:
-  - phpunit -c phpunit.xml
+  - phpunit -c phpunit.xml.dist
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
       phpunit -c phpunit.xml
