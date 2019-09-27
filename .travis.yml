@@ -44,7 +44,4 @@ before_script:
   - cd ..
 script:
   - phpunit -c phpunit.xml.dist
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      phpunit -c phpunit.xml
-    fi
+  - phpunit -c phpunit.xml
