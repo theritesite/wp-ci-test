@@ -35,7 +35,7 @@ install_db() {
                 local ioption='-i'
         fi
 
-
+	cp web/Gruntfile.js .
         if [ ! -f web/wp-tests-config.php ]; then
 		cp web/wp-tests-config-sample.php web/wp-tests-config.php
 		WP_CORE_DIR="web"
