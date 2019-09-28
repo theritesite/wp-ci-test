@@ -10,8 +10,8 @@ say() {
 if [ $1 == 'before' ]; then
 
 	# place a copy of woocommerce where the unit tests etc. expect it to be
-	mkdir -p "../woocommerce"
-	curl -L https://github.com/woocommerce/woocommerce/archive/3.7.0.tar.gz | tar --strip-components=1 -zx -C "../woocommerce"
+	mkdir -p "woocommerce"
+	curl -L https://github.com/woocommerce/woocommerce/archive/3.7.0.tar.gz | tar --strip-components=1 -zx -C "woocommerce"
 
 	say "WooCommerce Installed"
 
