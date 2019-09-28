@@ -1,47 +1,43 @@
-sudo: false
-dist: trusty
-
 language: php
 
+sudo: false
+ 
 notifications:
-  email:
-    on_success: never
-    on_failure: change
+  email: false
+
+php:
+  - 5.6
+  - 7.1
+
+env:
+  - WP_VERSION=4.5 WC_VERSION=2.6.4 CODECOV=1
+  - WP_VERSION=4.4 WC_VERSION=2.6.4 CODECOV=0
+
+dist: precise
 
 branches:
   only:
     - master
 
-cache:
-  directories:
-    - vendor
-    - $HOME/.composer/cache
-
-matrix:
-  include:
-    - php: 7.1
-      env: WP_VERSION=latest
-
-install:
-  - composer install --prefer-dist
-
 before_script:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
-      phpenv config-rm xdebug.ini
-    else
-      echo "xdebug.ini does not exist"
-    fi
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      bash bin/install-wp-develop.sh wordpress_test root '' localhost $WP_VERSION
-      composer global require "phpunit/phpunit=4.8.*|5.7.*"
-    fi
-  - cp -r web/tests .
-  - cp -r web/tools .
-  - npm install
-  - npm --force run build
-script:
-  - phpunit web/tests/phpunit/*
-  - phpunit -c phpunit.xml
+  - bash tests/bin/install.sh wcsie_test root '' localhost $WP_VERSION
+  - bash tests/bin/travis.sh before
+
+script: 
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]] && [[ "$CODECOV" == "1" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then phpunit -c phpunit.xml.dist --coverage-clover clover.xml; else phpunit -c phpunit.xml.dist; fi
+  # Search for PHP syntax errors.
+  - find . \( -path ./tmp -o -path ./tests \) -prune -o \( -name '*.php' \) -exec php -lf {} \; 
+  # Prospress/WordPress Coding Standards
+  # @link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
+  # @link http://pear.php.net/package/PHP_CodeSniffer/
+  # -p flag: Show progress of the run.
+  # -s flag: Show sniff codes in all reports.
+  # -v flag: Print verbose output.
+  # -n flag: Do not print warnings. (shortcut for --warning-severity=0)
+  # --standard: Use WordPress as the standard.
+  # --extensions: Only sniff PHP files.
+  - tmp/php-codesniffer/scripts/phpcs -p -s -v -n . --extensions=php --ignore=*/tmp/*,*/tests/*,*/node_modules/*,*/libraries/*,*/woo-includes/*
+
+after_script:
+#  - bash tests/bin/travis.sh after
+  - bash <(curl -s https://codecov.io/bash)
