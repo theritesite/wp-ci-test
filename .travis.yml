@@ -35,8 +35,8 @@ script:
   # -n flag: Do not print warnings. (shortcut for --warning-severity=0)
   # --standard: Use WordPress as the standard.
   # --extensions: Only sniff PHP files.
-  - tmp/php-codesniffer/scripts/phpcs -p -s -v -n . --extensions=php --ignore=*/tmp/*,*/tests/*,*/node_modules/*,*/libraries/*,*/woo-includes/*
+  #- tmp/php-codesniffer/scripts/phpcs -p -s -v -n . --extensions=php --ignore=*/tmp/*,*/tests/*,*/node_modules/*,*/libraries/*,*/woo-includes/*
 
 after_script:
 #  - bash tests/bin/travis.sh after
-  - bash <(curl -s https://codecov.io/bash)
+#  - bash <(curl -s https://codecov.io/bash)
