@@ -10,8 +10,7 @@ php:
   - 7.1
 
 env:
-  - WP_VERSION=4.5 WC_VERSION=2.6.4 CODECOV=1
-  - WP_VERSION=4.4 WC_VERSION=2.6.4 CODECOV=0
+  - WP_VERSION=latest WC_VERSION=latest CODECOV=1
 
 dist: precise
 
