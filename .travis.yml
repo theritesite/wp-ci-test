@@ -23,7 +23,7 @@ before_script:
   - bash bin/travis.sh before
 
 script: 
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]] && [[ "$CODECOV" == "1" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then vendor/phpunit/phpunit -c phpunit.xml.dist --coverage-clover clover.xml; else vendor/phpunit/phpunit -c phpunit.xml.dist; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]] && [[ "$CODECOV" == "1" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --coverage-clover clover.xml; else vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist; fi
   # Search for PHP syntax errors.
   - find . \( -path ./tmp -o -path ./tests \) -prune -o \( -name '*.php' \) -exec php -lf {} \; 
   # Prospress/WordPress Coding Standards
