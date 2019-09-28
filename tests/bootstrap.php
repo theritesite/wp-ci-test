@@ -67,7 +67,6 @@ class WCS_Unit_Tests_Bootstrap {
 		include( $this->modules_dir . '/woocommerce/uninstall.php' );
 		WC_Install::install();
 		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
-		$GLOBALS['wp_roles']->reinit();
 		WC()->init();
 		echo "WooCommerce Finished Installing..." . PHP_EOL;
 	}
