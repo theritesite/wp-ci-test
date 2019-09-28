@@ -6,7 +6,6 @@ notifications:
   email: false
 
 php:
-  - 5.6
   - 7.1
 
 env:
@@ -19,8 +18,8 @@ branches:
     - master
 
 before_script:
-  - bash tests/bin/install.sh wcsie_test root '' localhost $WP_VERSION
-  - bash tests/bin/travis.sh before
+  - bash bin/install.sh wcsie_test root '' localhost $WP_VERSION
+  - bash bin/travis.sh before
 
 script: 
   - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]] && [[ "$CODECOV" == "1" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then phpunit -c phpunit.xml.dist --coverage-clover clover.xml; else phpunit -c phpunit.xml.dist; fi
