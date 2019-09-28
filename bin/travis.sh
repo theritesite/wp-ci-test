@@ -11,8 +11,9 @@ if [ $1 == 'before' ]; then
 
 	# place a copy of woocommerce where the unit tests etc. expect it to be
 	mkdir -p "woocommerce"
-	#curl -L https://github.com/woocommerce/woocommerce/archive/3.7.0.tar.gz | tar --strip-components=1 -zx -C "woocommerce"
-	curl -L https://github.com/woocommerce/woocommerce.git | tar --strip-components=1 -zx -C "woocommerce"
+	# curl -L https://github.com/woocommerce/woocommerce/archive/3.7.0.tar.gz | tar --strip-components=1 -zx -C "woocommerce"
+	# curl -L https://github.com/woocommerce/woocommerce.git | tar -zx -C "woocommerce"
+	curl -L https://api.github.com/repos/woocommerce/woocommerce/tarball | tar -zx -C "woocommerce"
 
 	say "WooCommerce Installed"
 
