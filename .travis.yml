@@ -41,7 +41,7 @@ before_script:
   - cp -r web/tests .
   - cp -r web/tools .
   - npm install
-  - npm run build
+  - npm --force run build
 script:
   - phpunit web/tests/phpunit/*
   - phpunit -c phpunit.xml
