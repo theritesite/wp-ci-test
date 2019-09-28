@@ -18,6 +18,7 @@ branches:
     - master
 
 before_script:
+  - composer install
   - bash bin/install-wp.sh wcsie_test root '' localhost $WP_VERSION
   - bash bin/travis.sh before
 
